@@ -80,3 +80,7 @@ fos_user:
     registration:
         form:
             type: AppBundle\Form\RegistrationFormType
+
+ewz_recaptcha:
+    public_key:  '%recaptcha_public%'
+    private_key: '%recaptcha_private%'
