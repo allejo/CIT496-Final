@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="AppBundle\EntityRepository\UserRepository")
@@ -20,14 +21,38 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="string", nullable=false)
+     * @Assert\Length(
+     *     min=2,
+     *     max=40,
+     *     minMessage="Your name is too short.",
+     *     maxMessage="Your name seems to be too long."
+     * )
      */
-    private $firstName;
+    protected $firstName;
+
+    /**
+     * @ORM\Column(type="string", nullable=false)
+     * @Assert\Length(
+     *     min=2,
+     *     max=40,
+     *     minMessage="Your name is too short.",
+     *     maxMessage="Your name seems to be too long."
+     * )
+     */
+    protected $lastName;
+
+    /**
+     * @ORM\Column(type="date", nullable=false)
+     * @Assert\Date()
+     * @Assert\LessThan("-13 years")
+     */
+    protected $birthday;
 
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\LoginEvent", mappedBy="user")
      */
-    private $logins;
+    protected $logins;
 
     public function __construct()
     {
@@ -45,6 +70,14 @@ class User extends BaseUser
     }
 
     /**
+     * @return mixed
+     */
+    public function getFirstName()
+    {
+        return $this->firstName;
+    }
+
+    /**
      * @param mixed $firstName
      *
      * @return $this
@@ -57,11 +90,42 @@ class User extends BaseUser
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getFirstName()
+    public function getLastName()
     {
-        return $this->firstName;
+        return $this->lastName;
+    }
+
+    /**
+     * @param string $lastName
+     * @return $this
+     */
+    public function setLastName($lastName)
+    {
+        $this->lastName = $lastName;
+
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getBirthday()
+    {
+        return $this->birthday;
+    }
+
+    /**
+     * @param \DateTime $birthday
+     *
+     * @return $this
+     */
+    public function setBirthday(\DateTime $birthday)
+    {
+        $this->birthday = $birthday;
+
+        return $this;
     }
 
     /**
