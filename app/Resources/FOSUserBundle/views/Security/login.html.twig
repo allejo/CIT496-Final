@@ -1,0 +1,20 @@
+{% extends '::base.html.twig' %}
+
+{% block title%}User Login{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="page-header">Login</h2>
+
+                {{ include('@FOSUser/Security/login_content.html.twig') }}
+            </div>
+            <div class="col-md-6">
+                <h2 class="page-header">No Account? No Problem!</h2>
+
+                <a href="{{ path('fos_user_registration_register') }}" class="btn btn-primary">Register</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
