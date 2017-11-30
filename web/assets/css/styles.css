@@ -1,0 +1,8 @@
+.password-strength-container {
+    margin-bottom: 15px;
+}
+
+.password-strength-container .progress {
+    margin-bottom: 5px;
+    margin-top: 25px;
+}

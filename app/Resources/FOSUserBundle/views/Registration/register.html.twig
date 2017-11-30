@@ -1,0 +1,10 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    {% include "@FOSUser/Registration/register_content.html.twig" %}
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js"></script>
+    <script src="{{ asset('assets/js/password.js') }}"></script>
+{% endblock %}
