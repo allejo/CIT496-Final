@@ -3,19 +3,23 @@
 {% block title %}A Super Secure Site{% endblock %}
 
 {% block body %}
-    {% if is_granted('ROLE_USER') %}
-        <p><a href="{{ path('fos_user_security_logout') }}">Logout</a></p>
+    <div class="container">
+        {% if is_granted('ROLE_USER') %}
+            <h1 class="page-header">Welcome <small><a href="{{ path('fos_user_security_logout') }}">Logout</a></small></h1>
 
-        <p>Hello {{ app.user.username }}</p>
+            <p>Hello {{ app.user.username }}</p>
 
-        <p>Your last login was {{ app.user.lastlogin | date('M d, Y h:ia') }}</p>
-        <p>You have had {{ logins.successful | number_format }} successful logins.</p>
-        <p>You have had {{ logins.failed | number_format }} failed logins.</p>
+            <p>Your last login was {{ app.user.lastlogin | date('M d, Y h:ia') }}</p>
+            <p>You have had {{ logins.successful | number_format }} successful logins.</p>
+            <p>You have had {{ logins.failed | number_format }} failed logins.</p>
 
-        <hr>
+            <hr>
 
-        <p>You may now download the <a href="{{ path('image_loader', { name: 'secret.jpg' }) }}">secret file</a></p>
-    {% else %}
-        <a href="{{ path('fos_user_security_login') }}">Login</a>
-    {% endif %}
+            <p>You may now download the <a href="{{ path('image_loader', { name: 'secret.jpg' }) }}">secret file</a></p>
+        {% else %}
+            <h1 class="page-header">Welcome</h1>
+
+            <a href="{{ path('fos_user_security_login') }}" class="btn btn-default">Login</a>
+        {% endif %}
+    </div>
 {% endblock %}
