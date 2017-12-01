@@ -13,6 +13,27 @@
             <p>You have had {{ logins.successful | number_format }} successful logins.</p>
             <p>You have had {{ logins.failed | number_format }} failed logins.</p>
 
+            {% if logins.attempts %}
+                <h2>Recent Failed Login Attempts on your Account</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>IP Address</th>
+                            <th>Timestamp</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for attempt in logins.attempts %}
+                            <tr>
+                                <td>{{ attempt.ipAddress }}</td>
+                                <td>{{ attempt.datetime | date('M d, Y h:i:s') }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+
             <hr>
 
             <p>You may now download the <a href="{{ path('image_loader', { name: 'secret.jpg' }) }}">secret file</a></p>

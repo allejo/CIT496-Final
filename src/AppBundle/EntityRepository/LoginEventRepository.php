@@ -29,4 +29,20 @@ class LoginEventRepository extends \Doctrine\ORM\EntityRepository
             ->getSingleScalarResult()
         ;
     }
+
+    public function getLastFailedLogins(User $user, $count)
+    {
+        $qb = $this
+            ->createQueryBuilder('le')
+            ->andWhere('le.user = :user')
+            ->setParameter('user', $user)
+            ->andWhere('le.successful = false')
+            ->setMaxResults($count)
+        ;
+
+        return $qb
+            ->getQuery()
+            ->execute()
+        ;
+    }
 }
