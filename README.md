@@ -1,9 +1,8 @@
 # CIT 496 Final Project
 
+
 This website is built on top of the [Symfony framework](http://symfony.com/) using the [FOSUserBundle](https://github.com/FriendsOfSymfony/FOSUserBundle) for user management.
-
 ## Installation
-
 All of the dependencies for the website are maintained through [Composer](https://getcomposer.org/) and are defined the `composer.json` file.
 
 If you're running a development environment, use composer without any flags to fetch all of the dependencies.
@@ -48,3 +47,7 @@ The IP address of all logins, failed or successful, are tracked, which will allo
 ### Secured Files
 
 The only directory that is exposed to the Internet is the `web/` folder so all secured files are stored in the `/assets/secret/` directory, which is not exposed to the Internet. A Symfony controller is then used to read files from the filesystem and deliver them when requested.
+
+## License
+
+ALL RIGHTS RESERVED
