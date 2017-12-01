@@ -1,0 +1,9 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="page-header">Reset Password</h1>
+
+        {% include "@FOSUser/Resetting/request_content.html.twig" %}
+    </div>
+{% endblock %}
