@@ -44,3 +44,7 @@ Each successful login is tracked in the database as well as some failed login at
 ### IP Addresses Recorded
 
 The IP address of all logins, failed or successful, are tracked, which will allow us to flag suspicious IP addresses if it is the first time they are being used by a user.
+
+### Secured Files
+
+The only directory that is exposed to the Internet is the `web/` folder so all secured files are stored in the `/assets/secret/` directory, which is not exposed to the Internet. A Symfony controller is then used to read files from the filesystem and deliver them when requested.
